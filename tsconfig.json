@@ -17,6 +17,9 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "formiojs": ["projects/form-io-js/src"] 
+    }
   }
 }

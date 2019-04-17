@@ -14,7 +14,9 @@ import {
   FormioOptions
 } from '../../formio.common';
 import { Formio, FormBuilder } from 'formiojs';
+import * as a  from 'formiojs';
 import { assign } from 'lodash';
+
 
 /* tslint:disable */
 @Component({

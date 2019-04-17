@@ -25,13 +25,12 @@
             "styles": [
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/formiojs/dist/formio.builder.min.css",
-              "./node_modules/formiojs/dist/formio.form.min.css",
-              "./node_modules/formiojs/dist/formio.full.min.css"
+              "./projects/form-io-js/dist/formio.builder.min.css",
+              "./projects/form-io-js/dist/formio.form.min.css",
+              "./projects/form-io-js/dist/formio.full.min.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-
             ],
             "es5BrowserSupport": true
           },
@@ -259,6 +258,134 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "projects/form-io-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "form-io-js": {
+      "root": "projects/form-io-js/",
+      "sourceRoot": "projects/form-io-js/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/form-io-js",
+            "index": "projects/form-io-js/src/index.html",
+            "main": "projects/form-io-js/src/main.ts",
+            "polyfills": "projects/form-io-js/src/polyfills.ts",
+            "tsConfig": "projects/form-io-js/tsconfig.app.json",
+            "assets": [
+              "projects/form-io-js/src/favicon.ico",
+              "projects/form-io-js/src/assets"
+            ],
+            "styles": [
+              "projects/form-io-js/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/form-io-js/src/environments/environment.ts",
+                  "with": "projects/form-io-js/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "form-io-js:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "form-io-js:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "form-io-js:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/form-io-js/src/test.ts",
+            "polyfills": "projects/form-io-js/src/polyfills.ts",
+            "tsConfig": "projects/form-io-js/tsconfig.spec.json",
+            "karmaConfig": "projects/form-io-js/karma.conf.js",
+            "styles": [
+              "projects/form-io-js/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/form-io-js/src/favicon.ico",
+              "projects/form-io-js/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/form-io-js/tsconfig.app.json",
+              "projects/form-io-js/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "form-io-js-e2e": {
+      "root": "projects/form-io-js-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/form-io-js-e2e/protractor.conf.js",
+            "devServerTarget": "form-io-js:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "form-io-js:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/form-io-js-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

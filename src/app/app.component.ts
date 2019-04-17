@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FormIoDemo2';
+
+  onChange(event) {
+    console.log(event.form);
+  }
 }
